@@ -21,11 +21,32 @@ APP.setup = ()=>{
 
 	let url = APP.params.get("m");
 	if (url){
+        APP.baseFolder = ATON.Utils.getBaseFolder(ATON.Utils.resolveCollectionURL(url));
 		APP.gItem.load(url);
 	}
 
 	APP.setupEventHandling();
+
+    ATON.UI.get("slider").append(
+        ATON.UI.createSlider({
+            range: [0.0,1.0],
+            step: 0.1,
+            oninput: (v)=>{
+                APP.updateItem(v)
+            }
+        })
+    );
 };
+
+APP.updateItem = (v)=>{
+	APP.gItem.traverse( ( o ) => {
+		if (o.material && o.material.uniforms){
+            let UU = o.material.uniforms;
+
+            UU.wSem.value = v;
+        }
+    });
+}
 
 // Custom Mat
 APP.createMaterial = (mat)=>{
@@ -35,7 +56,7 @@ APP.createMaterial = (mat)=>{
 
         uniforms: {
             time: { type:'float', value: 0.0 },
-            wSem: { type:'float', value: 0.0 },
+            wSem: { type:'float', value: 1.0 },
             //tBase: { type:'t' },
             tSem: { type:'t' }
         },
@@ -61,6 +82,29 @@ APP.createMaterial = (mat)=>{
                 sUV = uv;
             }
         `,
+
+        fragmentShader:`
+            varying vec3 vPositionW;
+            varying vec4 vPos;
+
+            varying vec3 vNormalW;
+            varying vec3 vNormalV;
+            varying vec2 sUV;
+
+            uniform float time;
+            uniform float wSem;
+
+            uniform sampler2D tSem;
+
+            void main(){
+                vec2 uvCoords = sUV;
+                vec4 semcol = texture2D(tSem, uvCoords);
+                semcol = mix(vec4(0,0,0,1),semcol, semcol.a);
+
+                csm_DiffuseColor = mix(csm_DiffuseColor,semcol, wSem);
+                //csm_DiffuseColor.a += 0.5;
+            }
+        `
 	});
 
 	return M;
@@ -69,14 +113,16 @@ APP.createMaterial = (mat)=>{
 APP.visitor = ()=>{
     if (!APP.gItem) return;
 
-    DSC._node.traverse( ( o ) => {
+    APP.gItem.traverse( ( o ) => {
 		if (o.material && o.material.map){
 			let tex   = o.material.map;
 			let name  = tex.name;
             //let base  = name + ".jpg";
             //let dname = name + "_"+DSC._dlayer + DSC.TEX_EXT;
             
-            let semname = name + "-sem.png";
+            let semname = APP.baseFolder + name + "-sem.png";
+
+            console.log(name)
 
             // if first time, setup custom material
             if (!o.material.userData.mSem) o.material = APP.createMaterial(o.material);
@@ -84,7 +130,7 @@ APP.visitor = ()=>{
 			let UU = o.material.uniforms;
 			//UU.wSem.value = 1.0;
 
-            ATON.Utils.loadTexture(DSC._dirLayers + dname, t => {
+            ATON.Utils.loadTexture(semname, t => {
                 t.flipY = false;
                 t.wrapS = THREE.RepeatWrapping;
                 t.wrapT = THREE.RepeatWrapping;
@@ -109,7 +155,7 @@ APP.setupEventHandling = ()=>{
 	});
 
 	ATON.on("AllNodeRequestsCompleted",()=>{
-		//APP.visitor();
+		APP.visitor();
 	});
 };
 
