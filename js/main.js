@@ -109,7 +109,7 @@ APP.setupEventHandling = ()=>{
 	});
 
 	ATON.on("AllNodeRequestsCompleted",()=>{
-		APP.visitor();
+		//APP.visitor();
 	});
 };
 
