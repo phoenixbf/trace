@@ -56,7 +56,7 @@ APP.createMaterial = (mat)=>{
 
         uniforms: {
             time: { type:'float', value: 0.0 },
-            wSem: { type:'float', value: 1.0 },
+            wSem: { type:'float', value: 0.0 },
             //tBase: { type:'t' },
             tSem: { type:'t' }
         },
@@ -99,10 +99,13 @@ APP.createMaterial = (mat)=>{
             void main(){
                 vec2 uvCoords = sUV;
                 vec4 semcol = texture2D(tSem, uvCoords);
-                semcol = mix(vec4(0,0,0,1),semcol, semcol.a);
+
+                float k = (csm_DiffuseColor.r + csm_DiffuseColor.g + csm_DiffuseColor.b)/3.0;
+                k *= 0.3;
+
+                semcol = mix(vec4(k,k,k,1),semcol, semcol.a);
 
                 csm_DiffuseColor = mix(csm_DiffuseColor,semcol, wSem);
-                //csm_DiffuseColor.a += 0.5;
             }
         `
 	});
