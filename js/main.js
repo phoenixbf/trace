@@ -97,6 +97,7 @@ APP.createMaterial = (mat)=>{
             uniform sampler2D tSem;
 
             void main(){
+                float a = csm_DiffuseColor.a;
                 vec2 uvCoords = sUV;
                 vec4 semcol = texture2D(tSem, uvCoords);
 
@@ -106,6 +107,7 @@ APP.createMaterial = (mat)=>{
                 semcol = mix(vec4(k,k,k,1),semcol, semcol.a);
 
                 csm_DiffuseColor = mix(csm_DiffuseColor,semcol, wSem);
+                csm_DiffuseColor.a = a;
             }
         `
 	});
@@ -123,7 +125,7 @@ APP.visitor = ()=>{
             //let base  = name + ".jpg";
             //let dname = name + "_"+DSC._dlayer + DSC.TEX_EXT;
             
-            let semname = APP.baseFolder + name + "-sem.png";
+            let semname = APP.baseFolder + name + "-semap.jpg";
 
             console.log(name)
 
