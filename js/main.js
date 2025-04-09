@@ -24,6 +24,14 @@ APP.setup = ()=>{
         APP.baseFolder = ATON.Utils.getBaseFolder(ATON.Utils.resolveCollectionURL(url));
 		APP.gItem.load(url);
 	}
+    else {
+        ATON.UI.showModal({
+            header: "TRACE tool",
+            body: ATON.UI.createContainer({items: [
+                ATON.UI.createElementFromHTMLString("<p>Welcome on TRACE (Texture Rendering with Annotated Color Encoding)</p>")
+            ]})
+        });
+    }
 
 	APP.setupEventHandling();
 
@@ -31,6 +39,7 @@ APP.setup = ()=>{
         ATON.UI.createSlider({
             range: [0.0,1.0],
             step: 0.1,
+            value: 0.0,
             oninput: (v)=>{
                 APP.updateItem(v)
             }
