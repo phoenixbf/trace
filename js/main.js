@@ -104,7 +104,10 @@ APP.createMaterial = (mat)=>{
                 float k = (csm_DiffuseColor.r + csm_DiffuseColor.g + csm_DiffuseColor.b)/3.0;
                 k *= 0.3;
 
-                semcol = mix(vec4(k,k,k,1),semcol, semcol.a);
+                float t = max(max(semcol.r, semcol.g), semcol.b);
+
+                semcol = mix(vec4(k,k,k,1),semcol, t);
+                //semcol = mix(semcol,vec4(k,k,k,1), 0.4);
 
                 csm_DiffuseColor = mix(csm_DiffuseColor,semcol, wSem);
                 csm_DiffuseColor.a = a;
