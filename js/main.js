@@ -32,7 +32,8 @@ APP.setup = ()=>{
                     <p>
                     <b>TRACE</b> (Texture Rendering with Annotated Color Encoding) is an interactive Web3D tool for visualizing and inspecting 3D models, designed to highlight and compare modified or reconstructed areas through false-color texturing.<br><br>
                     
-                    The system supports <b>transparency and traceability</b> of manual interventions carried out by 3D modelers, such as integrations used to fill <i>holes</i> that emerged due to complex acquisition conditions.
+                    The system supports <b>transparency and traceability</b> of manual interventions carried out by 3D modelers, such as integrations used to fill <i>holes</i> that emerged due to complex acquisition conditions.<br><br>
+                    TRACE supports models with color-coded maps, multiple textures, and interactive inspection using a slider.
                     </p>`)
             ]})
         });
