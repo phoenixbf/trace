@@ -28,7 +28,12 @@ APP.setup = ()=>{
         ATON.UI.showModal({
             header: "TRACE tool",
             body: ATON.UI.createContainer({items: [
-                ATON.UI.createElementFromHTMLString("<p>Welcome on TRACE (Texture Rendering with Annotated Color Encoding)</p>")
+                ATON.UI.createElementFromHTMLString(`
+                    <p>
+                    <b>TRACE</b> (Texture Rendering with Annotated Color Encoding) is an interactive Web3D tool for visualizing and inspecting 3D models, designed to highlight and compare modified or reconstructed areas through false-color texturing.<br><br>
+                    
+                    The system supports <b>transparency and traceability</b> of manual interventions carried out by 3D modelers, such as integrations used to fill <i>holes</i> that emerged due to complex acquisition conditions.
+                    </p>`)
             ]})
         });
     }
