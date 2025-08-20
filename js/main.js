@@ -34,7 +34,27 @@ APP.setup = ()=>{
                     
                     The system supports <b>transparency and traceability</b> of manual interventions carried out by 3D modelers, such as integrations used to fill <i>holes</i> that emerged due to complex acquisition conditions.<br><br>
                     TRACE supports models with color-coded maps, multiple textures, and interactive inspection using a slider.
-                    </p>`)
+                    </p>`
+                ),
+                ATON.UI.createElementFromHTMLString(`
+
+                        <div class="dropdown d-grid gap-2">
+                            <button class="btn btn-secondary aton-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Pick a 3D model...
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="${APP.basePath}?m=aldrovandi/models/CIPA2025/CS1-mammuth/mammuth_cs1.gltf">Mammuth</a></li>
+                                <li><a class="dropdown-item" href="${APP.basePath}?m=aldrovandi/models/CIPA2025/CS2-mosasaurus/Mosasaurus.gltf">Mosasaurus</a></li>
+                                <li><a class="dropdown-item" href="${APP.basePath}?m=aldrovandi/models/CIPA2025/CS3-pescemartello/pesce-martello.gltf">Pesce Martello</a></li>
+                                <li><a class="dropdown-item" href="${APP.basePath}?m=aldrovandi/models/CIPA2025/CS4-linum/linum.gltf">Linum</a></li>
+                                <li><a class="dropdown-item" href="${APP.basePath}?m=aldrovandi/models/CIPA2025/CS5-busto/bustoAldrovandi.gltf">Busto Aldrovandi</a></li>
+                                <li><a class="dropdown-item" href="${APP.basePath}?m=aldrovandi/models/CIPA2025/CS6-lofoforo/DCHOo_semplificato.gltf">Lofoforo</a></li>
+                                <li><a class="dropdown-item" href="${APP.basePath}?m=aldrovandi/models/CAA-ATENE2025/bustodonna/Busto_donnaDschagga.gltf">Busto Donna</a></li>
+                                <li><a class="dropdown-item" href="${APP.basePath}?m=aldrovandi/models/CAA-ATENE2025/teriaca/Teriaca.gltf">Teriaca</a></li>
+                                <li><a class="dropdown-item" href="${APP.basePath}?m=aldrovandi/models/CAA-ATENE2025/mandibola/mandibola.gltf">Mandibola</a></li>
+                            </ul>
+                        </div>
+                `)
             ]})
         });
     }
