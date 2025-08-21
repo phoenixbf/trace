@@ -36,6 +36,60 @@ APP.setup = ()=>{
                     TRACE supports models with color-coded maps, multiple textures, and interactive inspection using a slider.
                     </p>`
                 ),
+
+                ATON.UI.createDropdown({
+                    title: "Pick a 3D model",
+                    btnclasses: "btn-default",
+                    classes: "d-grid gap-2 dropup dropup-center",
+                    items:[
+                        {
+                            title: "Mammouth",
+                            icon: "collection-item",
+                            url: APP.basePath+"?m=aldrovandi/models/CIPA2025/CS1-mammuth/mammuth_cs1.gltf",
+                        },
+                        {
+                            title: "Mosasaurus",
+                            icon: "collection-item",
+                            url: APP.basePath+"?m=aldrovandi/models/CIPA2025/CS2-mosasaurus/Mosasaurus.gltf"
+                        },
+                        {
+                            title: "Pesce Martello",
+                            icon: "collection-item",
+                            url: APP.basePath+"?m=aldrovandi/models/CIPA2025/CS3-pescemartello/pesce-martello.gltf"
+                        },
+                        {
+                            title: "Linum",
+                            icon: "collection-item",
+                            url: APP.basePath+"?m=aldrovandi/models/CIPA2025/CS4-linum/linum.gltf"
+                        },
+                        {
+                            title: "Busto Aldrovandi",
+                            icon: "collection-item",
+                            url: APP.basePath+"?m=aldrovandi/models/CIPA2025/CS5-busto/bustoAldrovandi.gltf"
+                        },
+                        {
+                            title: "Lofoforo",
+                            icon: "collection-item",
+                            url: APP.basePath+"?m=aldrovandi/models/CIPA2025/CS6-lofoforo/DCHOo_semplificato.gltf"
+                        },
+                        {
+                            title: "Busto Donna",
+                            icon: "collection-item",
+                            url: APP.basePath+"?m=aldrovandi/models/CAA-ATENE2025/bustodonna/Busto_donnaDschagga.gltf"
+                        },
+                        {
+                            title: "Teriaca",
+                            icon: "collection-item",
+                            url: APP.basePath+"?m=aldrovandi/models/CAA-ATENE2025/teriaca/Teriaca.gltf"
+                        },
+                        {
+                            title: "Mandibola",
+                            icon: "collection-item",
+                            url: APP.basePath+"?m=aldrovandi/models/CAA-ATENE2025/mandibola/mandibola.gltf"
+                        }
+                    ]
+                })
+/*
                 ATON.UI.createElementFromHTMLString(`
 
                         <div class="dropdown d-grid gap-2">
@@ -55,6 +109,7 @@ APP.setup = ()=>{
                             </ul>
                         </div>
                 `)
+*/
             ]})
         });
     }
